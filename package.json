@@ -1,0 +1,14 @@
+{
+  "name": "python-dead-lock-study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/scott1028/python-dead-lock-study.git",
+  "author": "<mic1028002@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nodemon": "^1.18.3"
+  },
+  "scripts": {
+    "lift": "nodemon --exec 'python' dummy_server.py"
+  }
+}

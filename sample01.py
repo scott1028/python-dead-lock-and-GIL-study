@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 from multiprocessing import Pool, TimeoutError
 import time
 import os
@@ -6,7 +9,7 @@ def f(x):
     return x*x
 
 if __name__ == '__main__':
-    raw_input()
+    raw_input('[{0}] Press to start...'.format(os.getpid()))
     pool = Pool(processes=4)              # start 4 worker processes
 
     # print "[0, 1, 4,..., 81]"
@@ -35,4 +38,3 @@ if __name__ == '__main__':
         print res.get(timeout=11)
     except TimeoutError:
         print "We lacked patience and got a multiprocessing.TimeoutError"
-    
