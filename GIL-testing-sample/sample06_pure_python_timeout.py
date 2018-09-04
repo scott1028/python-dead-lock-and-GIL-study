@@ -8,7 +8,8 @@ import time
 import timeit
 
 
-CODE = 'for n in range(200 * 500000): n += 1'
+CODE = 'for n in range(200 * 50000): n += 1'
+DELAY = 3
 
 def tSleep(code=CODE):
     exec(code)
@@ -58,8 +59,8 @@ if __name__ == '__main__':
     print
 
     print '[TestCase - System Call Base Code Block Busy]'
-    t1 = main1(5)
+    t1 = main1(DELAY)
     print
-    t2 = main2(5)
+    t2 = main2(DELAY)
     assert t2 > t1
     print 'Use time.sleep to save time when GIL switched'
