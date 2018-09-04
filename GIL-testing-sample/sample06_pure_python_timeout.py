@@ -6,6 +6,7 @@
 from threading import Thread, _get_ident
 import time
 import timeit
+import os
 
 
 CODE = 'for n in range(200 * 50000): n += 1'
@@ -55,6 +56,7 @@ def main2(delay=None):
     return end_time - start_time
 
 if __name__ == '__main__':
+    raw_input('This pid is %s. You can type `strace -p %s` to trace system call!!' % (os.getpid(), os.getpid()))
     print '[TestCase - Python Base Code Block Busy]'
     print timeit.timeit(CODE, number=1)  # estimate time for special python code
     t1 = main1()
