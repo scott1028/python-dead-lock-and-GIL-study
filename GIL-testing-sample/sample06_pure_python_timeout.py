@@ -20,6 +20,12 @@ def my_counter(code=CODE, delay=None):
         tSleep(CODE)
     if delay != None:
         # time.sleep 不佔用 CPU 資源可以 delay 此 Thread 去 Acquire GIL, 即另一個 Thread 可以完全使用 CPU 資源
+        # 即接下來每一個 sys.getcheckinterval() 都是由其餘的 Thread 獲得!
+        # 
+        # ( 每一個 PyThread, 每 checkinterval code frame 將競爭一次 GIL 才能做事情 )
+        # 所以如果非 IO 或 Time Sleep 等待就會持續競爭導致 Python MultiThread 效能變差
+        # 
+        # Note: 將 getcheckinterval 調大可以讓 GIL 次數減少增加效能！
         return lambda: time.sleep(delay)
     return run
 
