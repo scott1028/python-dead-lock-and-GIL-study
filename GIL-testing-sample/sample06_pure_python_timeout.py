@@ -19,6 +19,7 @@ def my_counter(code=CODE, delay=None):
         print(_get_ident(), CODE)
         tSleep(CODE)
     if delay != None:
+        # time.sleep 不佔用 CPU 資源可以 delay 此 Thread 去 Acquire GIL, 即另一個 Thread 可以完全使用 CPU 資源
         return lambda: time.sleep(delay)
     return run
 
